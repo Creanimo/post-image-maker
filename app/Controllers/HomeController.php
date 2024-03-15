@@ -10,17 +10,10 @@ use Slim\Views\Twig;
 
 class HomeController
 {
-    protected $view;
-
-    public function __construct(Twig $view)
-    {
-        $this->view = $view;
-    }
-
     public function index(Request $request, Response $response)
     {
         // Fetch the Twig instance from the request's attributes
-        $twig = Twig::fromRequest($request);
+        $twig = $request->getAttribute(Twig::class);
         return $twig->render($response, 'index.twig');
     }
 }
