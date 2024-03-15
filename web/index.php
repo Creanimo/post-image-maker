@@ -30,7 +30,7 @@ $container->set(Twig::class, function() {
   return Twig::create(VIEW_PATH, [
     'cache'       => STORAGE_PATH . '/cache',
     'auto_reload' => true,
-  ]);;
+  ])
 });
 
 // creating App using bridge
@@ -39,7 +39,7 @@ $app = Bridge::create($container);
 // for error handling
 $app->addErrorMiddleware(true, false, false);
 
-$app->get('/', [HomeController::class, 'index'])
+$app->get('/', [HomeController::class, 'index']);
 
 $app->run();
 
