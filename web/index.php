@@ -34,8 +34,7 @@ $container->set(Twig::class, function() {
 // Defining HomeController
 $container->set('HomeController', function($container) {
   // Assuming you have a view dependency, for example
-  $view = $container->get('view');
-  return new \App\Controllers\HomeController($view);
+  return new \App\Controllers\HomeController;
 });
 
 // creating App using bridge
