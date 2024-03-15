@@ -2,8 +2,6 @@
 
 declare(strict_types = 1);
 
-use App\Controllers\HomeController;
-
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Log\LoggerInterface;
@@ -33,13 +31,20 @@ $container->set(Twig::class, function() {
   ]);
 });
 
+// Defining HomeController
+$container->set('HomeController', function ($container) {
+  return new \App\Controllers\HomeController();
+});
+
 // creating App using bridge
 $app = Bridge::create($container);
 
 // for error handling
 $app->addErrorMiddleware(true, false, false);
 
-$app->get('/', [HomeController::class, 'index']);
+$app->get('/', function ($request, $response, $args) use ($container) {
+  return $container->get('HomeController')->index($request, $response, $args);
+});
 
 $app->run();
 
