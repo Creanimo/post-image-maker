@@ -24,7 +24,7 @@ define('VIEW_PATH', __DIR__ . '/../views');
 // initiate container
 $container = new Container();
 
-$container->set('view', function() {
+$container->set(Twig::class, function() {
   return Twig::create(VIEW_PATH, [
     'cache'       => STORAGE_PATH . '/cache',
     'auto_reload' => true,
@@ -40,6 +40,8 @@ $container->set('HomeController', function($container) {
 
 // creating App using bridge
 $app = Bridge::create($container);
+
+$app->add(TwigMiddleware::createFromContainer($app, Twig::class));
 
 // for error handling
 $app->addErrorMiddleware(true, false, false);
