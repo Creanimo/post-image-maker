@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use App\Controllers\HomeController;
 
 use Psr\Http\Message\ResponseInterface as Response;
@@ -13,8 +15,6 @@ use Monolog\Logger;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
-
-declare(strict_types = 1);
 
 // Using Composer for PHP class autoloading
 require_once(__DIR__.'/../vendor/autoload.php');
