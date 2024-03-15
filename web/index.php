@@ -34,7 +34,7 @@ $app->addErrorMiddleware(true, false, false);
 // Our web handlers
 $app->get('/', function(Request $request, Response $response, LoggerInterface $logger, Twig $twig) {
   $logger->debug('logging output.');
-  return $twig->render($response, 'index.twig', array("phpversiono" => "Version X"));
+  return $twig->render($response, 'index.twig', array("phpversiono" => phpversion()));
 });
 
 $app->run();
