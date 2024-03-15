@@ -11,7 +11,31 @@ use Monolog\Logger;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 
-require(__DIR__.'/../vendor/autoload.php');
+declare(strict_types = 1);
+
+// Using Composer for PHP class autoloading
+require_once(__DIR__.'/../vendor/autoload.php');
+
+// Global Path Variables
+define('STORAGE_PATH', __DIR__ . '/../storage');
+define('VIEW_PATH', __DIR__ . '/../views');
+
+$app = AppFactory::create();
+
+$app->get('/', [HomeController::class, 'index'])
+
+$twig = Twig::create(VIEW_PATH, [
+  'cache'       => STORAGE_PATH . '/cache',
+  'auto_reload' => true,
+]);
+
+$app->add(TwigMiddleware::create($app, $twig));
+
+$app->run();
+
+/*
+
+
 
 // Create DI container
 $container = new Container();
@@ -38,3 +62,5 @@ $app->get('/', function(Request $request, Response $response, LoggerInterface $l
 });
 
 $app->run();
+
+*/
