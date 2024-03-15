@@ -36,13 +36,17 @@ $container->set('HomeController', function ($container) {
   return new \App\Controllers\HomeController();
 });
 
+
 // creating App using bridge
 $app = Bridge::create($container);
 
 // for error handling
 $app->addErrorMiddleware(true, false, false);
 
-$app->get('/', $container->get('HomeController')->index($request, $response, 'index'));
+// Define the route and fetch the controller from the container
+$app->get('/', function ($request, $response, $args) use ($container) {
+  return $container->get('HomeController')->index($request, $response, $args);
+});
 
 $app->run();
 
