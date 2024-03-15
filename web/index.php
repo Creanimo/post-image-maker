@@ -32,10 +32,11 @@ $container->set(Twig::class, function() {
 });
 
 // Defining HomeController
-$container->set('HomeController', function ($container) {
-  return new \App\Controllers\HomeController();
+$container->set('HomeController', function($container) {
+  // Assuming you have a view dependency, for example
+  $view = $container->get('view');
+  return new \App\Controllers\HomeController($view);
 });
-
 
 // creating App using bridge
 $app = Bridge::create($container);
@@ -48,6 +49,8 @@ $app->get('/', function (Request $request, Response $response) use ($container) 
   // Call the index method and pass an empty array for $args if needed
   return $container->get('HomeController')->index($request, $response, []);
 });
+
+
 
 $app->run();
 
