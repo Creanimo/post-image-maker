@@ -24,7 +24,7 @@ define('VIEW_PATH', __DIR__ . '/../views');
 // initiate container
 $container = new Container();
 
-$container->set(Twig::class, function() {
+$container->set('view', function() {
   return Twig::create(VIEW_PATH, [
     'cache'       => STORAGE_PATH . '/cache',
     'auto_reload' => true,
