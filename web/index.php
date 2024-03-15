@@ -39,9 +39,7 @@ $app = Bridge::create($container);
 // for error handling
 $app->addErrorMiddleware(true, false, false);
 
-$app->get('/', function(Request $request, Response $response, Twig $twig) {
-  return $twig->render($response, 'index.twig', array("phpversiono" => phpversion()));
-});
+$app->get('/', [HomeController::class, 'index']);
 
 $app->run();
 
