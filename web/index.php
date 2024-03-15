@@ -42,9 +42,7 @@ $app = Bridge::create($container);
 // for error handling
 $app->addErrorMiddleware(true, false, false);
 
-$app->get('/', function ($request, $response, $args) use ($container) {
-  return $container->get('HomeController')->index($request, $response, 'index');
-});
+$app->get('/', $container->get('HomeController')->index($request, $response, 'index'));
 
 $app->run();
 
