@@ -10,6 +10,7 @@ use Monolog\Level;
 use Monolog\Logger;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
+use Slim\Views\TwigMiddleware;
 
 declare(strict_types = 1);
 
