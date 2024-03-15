@@ -10,8 +10,11 @@ use Slim\Views\Twig;
 
 class HomeController
 {
-    public function index(Request $request, Response $response, $args)
+    // If you're not using $args, you can remove it from the method signature
+    public function index(Request $request, Response $response)
     {
-        return Twig::fromRequest($request)->render($response, 'index.twig');
+        // Fetch the Twig instance from the request's attributes
+        $twig = Twig::fromRequest($request);
+        return $twig->render($response, 'index.twig');
     }
 }

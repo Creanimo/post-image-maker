@@ -44,8 +44,9 @@ $app = Bridge::create($container);
 $app->addErrorMiddleware(true, false, false);
 
 // Define the route and fetch the controller from the container
-$app->get('/', function ($request, $response, $args) use ($container) {
-  return $container->get('HomeController')->index($request, $response, $args);
+$app->get('/', function (Request $request, Response $response) use ($container) {
+  // Call the index method and pass an empty array for $args if needed
+  return $container->get('HomeController')->index($request, $response, []);
 });
 
 $app->run();
